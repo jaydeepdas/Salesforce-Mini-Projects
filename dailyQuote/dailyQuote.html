@@ -1,0 +1,18 @@
+<!-- a "Daily Quote Generator" that fetches a random quote from an API and allows users to share it on Twitter. This project will demonstrate API integration, user interaction, and external service integration. -->
+<template>
+    <lightning-card title="Daily Quote Generator" icon-name="utility:quote">
+        <div class="slds-m-around_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+            <template if:false={isLoading}>
+                <p class="slds-text-heading_medium slds-m-bottom_small">"{quote}"</p>
+                <p class="slds-text-body_small slds-m-bottom_medium">- {author}</p>
+                <lightning-button-group>
+                    <lightning-button label="New Quote" onclick={handleNewQuote}></lightning-button>
+                    <lightning-button label="Share on Twitter" onclick={handleShare} variant="brand"></lightning-button>
+                </lightning-button-group>
+            </template>
+        </div>
+    </lightning-card>
+</template>
