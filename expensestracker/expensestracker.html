@@ -1,0 +1,90 @@
+<template>
+  <lightning-card>
+    <center style="font-size: 2rem; background-color:#f0f0f0;">
+      <b>Expenses Tracker </b>
+    </center>
+  </lightning-card>
+  <lightning-card>
+  <template if:true={expenses.length}>
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+      <thead>
+        <tr class="slds-line-height_reset">
+          <th scope="col">
+            <div class="slds-truncate" title="Date">Date</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Payment Type">Payment Type</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Description">Description</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Amount">Amount</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <template for:each={expenses} for:item="expense">
+          <tr key={expense.id} class="slds-hint-parent">
+            <td>
+              <div class="slds-truncate">{expense.date}</div>
+            </td>
+            <td>
+              <div class="slds-truncate">{expense.paymentType}</div>
+            </td>
+            <td>
+              <div class="slds-truncate">{expense.description}</div>
+            </td>
+            <td>
+              <div class="slds-truncate">{expense.amount}</div>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </template>
+
+  <template if:false={expenses.length}>
+    <div class="slds-text-align_center">No expenses found.</div>
+  </template>
+
+  <form class="slds-form-element">
+    <div class="slds-form-element__control">
+      <lightning-input
+        label="Date"
+        type="date"
+        value={newExpense.date}
+        onchange={handleDateChange}
+      ></lightning-input>
+    </div>
+    <div class="slds-form-element__control">
+      <lightning-input
+        label="Payment Type"
+        type="text"
+        value={newExpense.paymentType}
+        onchange={handlePaymentTypeChange}
+      ></lightning-input>
+    </div>
+    <div class="slds-form-element__control">
+      <lightning-input
+        label="Description"
+        type="text"
+        value={newExpense.description}
+        onchange={handleDescriptionChange}
+      ></lightning-input>
+    </div>
+    <div class="slds-form-element__control">
+      <lightning-input
+        label="Amount"
+        type="number"
+        value={newExpense.amount}
+        onchange={handleAmountChange}
+        ></lightning-input>
+        </div>
+        <div class="slds-form-element__control">
+        <lightning-button variant="brand" label="Add Expense" onclick={addExpense}></lightning-button>
+        </div>
+        
+          </form>
+        </lightning-card>
+</template>
